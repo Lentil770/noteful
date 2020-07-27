@@ -1,4 +1,39 @@
 .active {
-    color: blueviolet;
-    background-color: coral;
+    color: black;
+    font-weight: 700;
+}
+
+.foldersdisplay {
+    padding-top: 10px;
+    text-align: center;
+    color: rgb(18, 109, 64);
+}
+
+ul {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+li {
+    list-style: none;
+    background-color: rgb(18, 109, 64);
+    margin: 6px;
+    padding: 5px;
+    border-radius: 8%;
+}
+
+a {
+  color: rgb(153, 212, 182);
+}
+
+button {
+    background-color: rgb(153, 212, 182);
+    color: rgb(18, 109, 64);
+    font-weight: bolder;
+    border: none;
+    padding: 1%;
+}
+
+button:hover {
+    font-size: medium;
 }

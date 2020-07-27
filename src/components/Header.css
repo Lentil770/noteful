@@ -1,0 +1,16 @@
+.header {
+    text-align: center;
+}
+
+h1 {
+    background-color: rgb(18, 109, 64);
+    margin-top: 0;
+    margin-bottom: 0;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+}

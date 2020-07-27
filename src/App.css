@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+html {
+  
+  background-color: rgb(230, 247, 238);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -1,6 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import NoteTitle from './NoteTitle';
 import NotefulContext from '../NotefulContext';
+import ErrorBoundary from '../ErrorBoundary';
+import './NotesDisplay.css';
 
 export default class NotesDisplay extends React.Component {
     static contextType = NotefulContext;
@@ -25,8 +28,6 @@ export default class NotesDisplay extends React.Component {
                       folderId={notes[i].folderId}
                       noteID = {notes[i].id}
                       onDelete={console.log('onDelete')}
-                      //hope is unneccesary 
-                      //changeNote={this.context.changeNote}
                   />  
                 </li>
             )
@@ -37,13 +38,17 @@ export default class NotesDisplay extends React.Component {
     render() {
         
         return (
-            <div>
+            <div className='notesDisplayDiv'>
+                <Link to='/addNote'>
+                    <button className='addNoteLink' >
+                        Add Note
+                    </button>
+                </Link>
                 <ul className='noteTitleList'>
-                    {this.noteBoxes()}
+                    <ErrorBoundary>
+                    	{this.noteBoxes()}
+                    </ErrorBoundary>
                 </ul>
-                <button className='addNoteLink' onClick={() => console.log('add note button clicked')}>
-                    Add Note
-                </button>
             </div>
         )
     }

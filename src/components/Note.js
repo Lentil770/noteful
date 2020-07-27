@@ -5,25 +5,25 @@ import NotefulContext from '../NotefulContext'
 
 class Note extends React.Component {
     static contextType=NotefulContext;
+    /* didnt work, possibly bc notetitle also needs withRouter. 
     onDelete = () => {
         console.log('hellooo');
         
         this.props.history.push('/');
-    }
+    } */
     render() {
-        
+        console.log('note rendering');
         const noteId = this.props.match.params.noteID;
         const noteForProps = this.context.notes.find(note => note.name === noteId);
-        console.log(noteForProps);
+
         return (
                 <div className='note'>
-                    <NoteTitle name={noteForProps.name}
+                    <NoteTitle 
+                        name={noteForProps.name}
                         modified={noteForProps.modified}
                         noteID={noteForProps.id}
-                        onDelete={this.onDelete()}
                     />
                     <p>{noteForProps.content}</p>
-
                 </div>
             )} 
 }

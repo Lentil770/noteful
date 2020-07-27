@@ -1,7 +1,8 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './FoldersDisplay.css';
 import NotefulContext from '../NotefulContext';
+import ErrorBoundary from '../ErrorBoundary';
 
 class FoldersDisplay extends React.Component {
     static contextType = NotefulContext;
@@ -28,10 +29,15 @@ class FoldersDisplay extends React.Component {
     render() {
         return (
             <div className='foldersdisplay'>Folders:
-                <ul>{this.folderList()}</ul>
-                <button onClick={() => console.log('add folder clicked')}>Add Folder</button>
+                <ErrorBoundary>
+                	<ul>{this.folderList()}</ul>
+                </ErrorBoundary>
+                <Link to='/addFolder'>
+                    <button type='button' >Add Folder</button>
+                </Link>
             </div>
         )
     }
 }
 export default FoldersDisplay;
+

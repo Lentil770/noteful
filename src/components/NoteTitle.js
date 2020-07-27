@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NotefulContext from '../NotefulContext';
+import PropTypes from 'prop-types';
 
 export default class NoteTitle extends React.Component {
     static contextType = NotefulContext;
@@ -8,7 +9,7 @@ export default class NoteTitle extends React.Component {
     deleteNote = () => {
         const { noteID } = this.props;
         const address = 'http://localhost:9090/notes/' + noteID;
-        console.log(address);
+        console.log(this.props.name, address);
         
         fetch(address, {
             method: 'DELETE',
@@ -20,7 +21,6 @@ export default class NoteTitle extends React.Component {
         }
         ).then(res => {
             this.context.deleteNote(noteID)
-            this.props.onDelete()
         })
         .catch(err => console.log(err))
     }
@@ -31,13 +31,20 @@ export default class NoteTitle extends React.Component {
                         to={'/note/' + encodeURIComponent(this.props.name)}
                     >{this.props.name}</Link>
                 <p>date modified: {this.props.modified}</p>
-                <button className='deleteButton' 
-                    onClick={this.deleteNote}>
-                    Delete Note
-                </button>
+                <Link to='/'>
+                    <button className='deleteButton' 
+                        onClick={this.deleteNote}>
+                        Delete Note
+                    </button>
+                </Link>
             </div>
         )
     }
+}
+
+NoteTitle.propTypes = {
+    name: PropTypes.string,
+    onDelete: PropTypes.func
 }
 
 NoteTitle.defaultProps = {
@@ -46,7 +53,3 @@ NoteTitle.defaultProps = {
     folderId: 'defaultID',
 }
 
-/* 
-              //button shd be unnecesary
-               <button onClick={e => this.props.changeNote(this.props)}>;
-               */

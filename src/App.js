@@ -8,6 +8,9 @@ import Folder from './components/Folder';
 import WrongAddress from './components/WrongAddress';
 import { Route, Switch } from 'react-router-dom';
 import NotefulContext from './NotefulContext';
+import AddFolder from './components/AddFolder';
+import AddNote from './components/AddNote';
+import ErrorBoundary from './ErrorBoundary';
 
 class App extends React.Component {
   constructor(props) {
@@ -80,7 +83,6 @@ class App extends React.Component {
         this.setState({
           loaded: true
         })
-        console.log(this.state)
       })    
   }
 
@@ -159,13 +161,27 @@ class App extends React.Component {
             <aside>
               <Route exact path='/' component={FoldersDisplay} />
               <Route path='/folder/:folderID' component={FoldersDisplay} />
-              <Route path='/note/:noteID' component={Folder} />
+              <Route path='/note/:noteID' render={({history}) => <ErrorBoundary>
+                    <Folder/>
+                  </ErrorBoundary>}  
+                />
             </aside>
             <main>
               <Switch>
                 <Route exact path='/' component={NotesDisplay} />
                 <Route path='/folder/:folderID' component={NotesDisplay} />
-                <Route path='/note/:noteID' component={Note} />
+                <Route path='/note/:noteID' render={({history}) => <ErrorBoundary>
+                    <Note/>
+                  </ErrorBoundary>}
+                />
+                <Route path='/addFolder' render={({history}) => <ErrorBoundary>
+                    <AddFolder />
+                  </ErrorBoundary>}  
+                />
+                <Route path='/addNote' render={({history}) => <ErrorBoundary>
+                    <AddNote />
+                  </ErrorBoundary>} 
+                />
                 <Route component={WrongAddress} />
               </Switch>
             </main>
